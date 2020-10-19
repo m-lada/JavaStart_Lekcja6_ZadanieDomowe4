@@ -1,12 +1,10 @@
 package pl.logic;
 
-import pl.model.Company;
-
 import java.util.Scanner;
 
 public class EmployeeService {
 
-    private Employee add() {
+    public Employee add() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Imię:");
         String firstName = scanner.nextLine();
@@ -16,10 +14,6 @@ public class EmployeeService {
         int payment = scanner.nextInt();
         scanner.nextLine();
         return new Employee(firstName, lastName, payment);
-    }
-
-    public void addEmployessToBase(Employee[] employees, int employeeNumber) {
-        employees[employeeNumber] = add();
     }
 
     public int getSumOfPayment(Employee[] employees, int numberOfEmployees) {

@@ -22,4 +22,5 @@ public class Employee {
     public int getPayment() {
         return payment;
     }
+
 }

@@ -3,10 +3,9 @@ package pl.model;
 import pl.logic.Employee;
 import pl.logic.EmployeeService;
 
-import java.util.Scanner;
-
 public class Company {
 
+    private int employessCounter;
     private Employee[] employees;
 
     public Company(int size) {
@@ -17,12 +16,21 @@ public class Company {
         return employees[index];
     }
 
-    public void add(int employeeNumber) {
+    public void add() {
         EmployeeService employeeService = new EmployeeService();
-        employeeService.addEmployessToBase(employees, employeeNumber);
+        employees[employessCounter] = employeeService.add();
+        employessCounter++;
     }
 
     public Employee[] getEmployees() {
         return employees;
+    }
+
+    public int getEmployessCounter() {
+        return employessCounter;
+    }
+
+    public void setEmployessCounter(int employessCounter) {
+        this.employessCounter = employessCounter;
     }
 }

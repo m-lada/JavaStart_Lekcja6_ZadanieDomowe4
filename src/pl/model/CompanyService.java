@@ -1,20 +1,10 @@
 package pl.model;
 
-import pl.logic.Employee;
 import pl.logic.EmployeeService;
 
 import java.util.Scanner;
 
 public class CompanyService {
-
-    private int employessCounter;
-
-//    public void createBase() {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Ilu pracowników w firmie");
-//        int size = scanner.nextInt();
-//        Company company = new Company(size);
-//    }
 
     public void companyServices() {
         Scanner scanner = new Scanner(System.in);
@@ -46,24 +36,27 @@ public class CompanyService {
 
             switch (option) {
                 case addEmployee:
-                    if (employessCounter < size) {
-                        company.add(employessCounter);
-                        employessCounter++;
+                    if (company.getEmployessCounter() < size) {
+                        company.add();
                     } else {
                         System.out.println("Nie można wprowadzić więcej pracowników");
                     }
                     break;
                 case showEmployeeList:
-                    employeeService.showEmployessInfo(company.getEmployees(), employessCounter);
+                    employeeService.showEmployessInfo(company.getEmployees(), company.getEmployessCounter());
                     break;
                 case showDirectEmployee:
                     System.out.println("Wskaż, o którego pracownika chodzi:");
                     int employeeIndex = scanner.nextInt() - 1;
-                    company.getEmployee(employeeIndex).employeeInfo();
+                    if (employeeIndex < company.getEmployessCounter()) {
+                        company.getEmployee(employeeIndex).employeeInfo();
+                    } else {
+                        System.out.println("Nie ma takiego pracownika");
+                    }
                     break;
                 case showEmployeesPayment:
-                    if (employessCounter < size) {
-                        System.out.println("Suma wynagrodzeń: " + employeeService.getSumOfPayment(company.getEmployees(), employessCounter));
+                    if (company.getEmployessCounter() < size) {
+                        System.out.println("Suma wynagrodzeń: " + employeeService.getSumOfPayment(company.getEmployees(), company.getEmployessCounter()));
                         System.out.println();
                     } else {
                         System.out.println("Nie ma takiego pracownika");
